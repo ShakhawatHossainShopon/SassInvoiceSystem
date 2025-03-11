@@ -16,11 +16,20 @@ export async function POST(req) {
     }
     // password hash
     const hashPassword = await bcrypt.hash(password, 10);
+    const role = "Admin";
 
-    const NewAdmin = new Admin({ email, username, password: hashPassword });
+    const NewAdmin = new Admin({
+      email,
+      username,
+      password: hashPassword,
+      role,
+    });
     await NewAdmin.save();
     return NextResponse.json({ Success: "Admin Created Succesfully" });
   } catch (error) {
-    return NextResponse.json({ error: "Failed to Register" }, { status: 500 });
+    return NextResponse.json(
+      { error: `Failed to Register ${error}` },
+      { status: 500 }
+    );
   }
 }
