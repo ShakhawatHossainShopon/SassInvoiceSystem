@@ -19,7 +19,7 @@ export async function POST(req) {
 
     const NewAdmin = new Admin({ email, username, password: hashPassword });
     await NewAdmin.save();
-    return NextResponse.json({ error: "Admin Created Succesfully" });
+    return NextResponse.json({ Success: "Admin Created Succesfully" });
   } catch (error) {
     return NextResponse.json({ error: "Failed to Register" }, { status: 500 });
   }
