@@ -47,6 +47,7 @@ export async function POST(req) {
       shopContact,
       shopId,
       invoices: [],
+      invoiceCount: 0,
     });
 
     await NewUser.save();
@@ -59,3 +60,13 @@ export async function POST(req) {
     );
   }
 }
+
+// {
+//   "email": "testuser@example.com",
+//   "password": "password123",
+//   "username": "testuser",
+//   "shopName": "Test Shop",
+//   "shopOwnerName": "John Doe",
+//   "shopImage": "https://example.com/shop-image.jpg",
+//   "shopContact": 1234567890
+// }

@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 // Define the Invoice schema
 const InvoiceSchema = new mongoose.Schema({
-  invoiceNumber: {
+  invoiceId: {
     type: String,
     required: true,
   },
@@ -53,6 +53,9 @@ const ShopSchema = new mongoose.Schema({
   shopImage: {
     type: String,
     required: true,
+  },
+  invoiceCount: {
+    type: Number,
   },
   invoices: [InvoiceSchema], // Array of invoices
 });

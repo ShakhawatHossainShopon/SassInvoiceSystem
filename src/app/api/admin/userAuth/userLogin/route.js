@@ -1,39 +1,38 @@
+import User from "@/app/models/User";
 import { connectToDB } from "@/lib/mongodb";
-import Admin from "@/app/models/Admin";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { NextResponse } from "next/server";
 
+// Secret key for JWT token (this should ideally be in an environment variable)
+const secretKey = process.env.JWT_SECRET;
+
 export async function POST(req) {
   try {
     const { email, password } = await req.json();
-    await connectToDB();
+    connectToDB();
+    const user = await User.findOne({ email });
 
-    const admin = await Admin.findOne({ email });
-
-    if (!admin) {
+    if (!user) {
       return NextResponse.json(
         { error: "Invalid email or password" },
         { status: 400 }
       );
     }
-
-    const isMatch = await bcrypt.compare(password, admin.password);
-    if (!isMatch) {
+    if (user.password !== password) {
       return NextResponse.json(
         { error: "Invalid email or password" },
         { status: 400 }
       );
     }
-
-    const Admintoken = jwt.sign(
-      { email: admin.email, role: admin.role },
-      process.env.JWT_SECRET
+    const token = jwt.sign(
+      { userId: user._id, shopId: user.shopId, role: user.role }, // Include userId and shopId in the payload
+      secretKey
     );
-    console.log(process.env.JWT_SECRET);
 
-    return NextResponse.json({ message: "Login successful", Admintoken });
-  } catch (error) {
+    // Step 6: Return the JWT token in the response
+    return NextResponse.json({ token }, { status: 200 });
+  } catch (erorr) {
     return NextResponse.json({ error: "Failed to login" }, { status: 500 });
   }
 }
