@@ -1,41 +1,47 @@
+import React from "react";
+import { twMerge } from "tw-merge";
+import clsx from "clsx";
+
 const Button = ({
   children,
-  size = "md",
-  variant = "primary",
-  startIcon,
-  endIcon,
+  loading,
   onClick,
-  className = "",
+  className = "", // default to an empty string
   disabled = false,
+  type = "button",
 }) => {
-  // Size Classes
-  const sizeClasses = {
-    sm: "px-4 py-3 text-sm",
-    md: "px-5 py-3.5 text-sm",
-  };
-
-  // Variant Classes
-  const variantClasses = {
-    primary:
-      "bg-brand-500 text-white shadow-theme-xs hover:bg-brand-600 disabled:bg-brand-300",
-    outline:
-      "bg-white text-gray-700 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 hover:text-gray-900",
-  };
-
   return (
-    <button
-      className={`inline-flex items-center justify-center gap-2 rounded-lg transition ${className} ${
-        sizeClasses[size]
-      } ${variantClasses[variant]} ${
-        disabled ? "cursor-not-allowed opacity-50" : ""
-      }`}
-      onClick={onClick}
-      disabled={disabled}
-    >
-      {startIcon && <span className="flex items-center">{startIcon}</span>}
-      {children}
-      {endIcon && <span className="flex items-center">{endIcon}</span>}
-    </button>
+    <div>
+      {loading ? (
+        <button
+          type="button"
+          className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-gray-300 text-gray-800 hover:bg-gray-200 cursor-pointer focus:outline-hidden  disabled:opacity-50 disabled:pointer-events-none"
+        >
+          <span
+            className="animate-spin inline-block size-4 border-3 border-current border-t-transparent text-gray-800 rounded-full"
+            role="status"
+            aria-label="loading"
+          />
+          Loading
+        </button>
+      ) : (
+        <button
+          type={type}
+          onClick={onClick}
+          disabled={disabled}
+          className={twMerge(
+            clsx(
+              // Default button styles
+              "py-3 px-4 cursor-pointer inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none",
+              // Dynamically merged custom classes from the parent
+              className // Merge the passed className dynamically
+            )
+          )}
+        >
+          {children}
+        </button>
+      )}
+    </div>
   );
 };
 

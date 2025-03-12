@@ -31,7 +31,11 @@ export async function POST(req) {
     );
 
     // Step 6: Return the JWT token in the response
-    return NextResponse.json({ token }, { status: 200 });
+    const res = NextResponse.json({ message: "Login successful" });
+    res.cookies.set("userToken", token, {
+      httpOnly: true,
+    });
+    return res;
   } catch (erorr) {
     return NextResponse.json({ error: "Failed to login" }, { status: 500 });
   }

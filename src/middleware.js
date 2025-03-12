@@ -4,15 +4,12 @@ import { NextResponse } from "next/server";
 
 export function middleware(request) {
   const path = request.nextUrl.pathname;
-  const token = request.cookies.get("adminToken");
-
-  const publicPath = path === "/Admin";
+  const token = request.cookies.get("Admintoken");
 
   if (!token) {
-    return NextResponse.next();
-  } else {
     return NextResponse.redirect(new URL("/Admin", request.nextUrl));
   }
+  return NextResponse.next();
 }
 
 // Apply middleware to routes under '/admin/*'

@@ -3,8 +3,14 @@ import { useState, useEffect, useRef } from "react";
 import { useSidebar } from "@/context/SidebarContext";
 import Image from "next/image";
 import Link from "next/link";
-
+import Button from "@/components/ui/button/Button";
+import LogoutIcon from "@mui/icons-material/Logout";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 const AppHeader = () => {
+  const router = useRouter();
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false); // Loading state
   const [isApplicationMenuOpen, setApplicationMenuOpen] = useState(false);
 
   const { isMobileOpen, toggleSidebar, toggleMobileSidebar } = useSidebar();
@@ -37,6 +43,29 @@ const AppHeader = () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
+
+  const handleLogout = async (e) => {
+    e.preventDefault();
+
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
+    if (!baseUrl) {
+      console.log("Base URL is undefined!");
+      return;
+    }
+
+    setLoading(true); // Start loading
+
+    try {
+      const response = await axios.post(`${baseUrl}/admin/auth/logout`);
+      router.push("/Admin");
+    } catch (error) {
+      console.log("Login error:", error);
+      setError(error);
+    } finally {
+      setLoading(false); // End loading
+    }
+  };
 
   return (
     <header className="sticky top-0 flex w-full bg-white border-gray-200 z-99999 lg:border-b">
@@ -117,6 +146,17 @@ const AppHeader = () => {
             </svg>
           </button>
         </div>
+        {error && "An Error Occurd"}
+        <Button
+          onClick={handleLogout}
+          className="hover:bg-gray-100  text-gray-800"
+          loading={loading ? true : false}
+        >
+          Logout
+          <span>
+            <LogoutIcon fontSize="small" />
+          </span>
+        </Button>
       </div>
     </header>
   );

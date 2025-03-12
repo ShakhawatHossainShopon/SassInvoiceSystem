@@ -28,16 +28,6 @@ const navItems = [
     path: "/Admin/stores", // Path for the link
   },
   {
-    icon: <StoreRoundedIcon />,
-    name: "Stores",
-    path: "/Admin/stores", // Path for the link
-  },
-  {
-    icon: <PersonAddAltRoundedIcon />,
-    name: "Add Users",
-    path: "/Admin/adminDashboard/addUsers", // Path for the link
-  },
-  {
     icon: <GroupRoundedIcon />,
     name: "All Users",
     path: "/Admin/adminDashboard/allUsers", // Path for the link
@@ -45,7 +35,7 @@ const navItems = [
   {
     icon: <ManageAccountsRoundedIcon />,
     name: "Admins",
-    path: "/Admin/adminDashboard/allUsers", // Path for the link
+    path: "/Admin/adminDashboard/admin", // Path for the link
   },
 ];
 
@@ -133,7 +123,9 @@ const AppSidebar = () => {
                         {nav.icon}
                       </span>
                       {(isExpanded || isHovered || isMobileOpen) && (
-                        <span className="text-sm">{nav.name}</span>
+                        <span className="font-semibold tracking-wider">
+                          {nav.name}
+                        </span>
                       )}
                     </Link>
                   </li>

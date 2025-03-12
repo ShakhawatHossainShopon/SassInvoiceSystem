@@ -30,9 +30,12 @@ export async function POST(req) {
       { email: admin.email, role: admin.role },
       process.env.JWT_SECRET
     );
-    console.log(process.env.JWT_SECRET);
+    const res = NextResponse.json({ message: "Login successful" });
 
-    return NextResponse.json({ message: "Login successful", Admintoken });
+    res.cookies.set("Admintoken", Admintoken, {
+      httpOnly: true,
+    });
+    return res;
   } catch (error) {
     return NextResponse.json({ error: "Failed to login" }, { status: 500 });
   }
