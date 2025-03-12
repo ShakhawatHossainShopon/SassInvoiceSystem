@@ -160,11 +160,11 @@ function Page() {
                   "Log in"
                 )}
               </button>
-              <p class="mt-10 text-center text-sm/6 text-gray-500">
+              <p className="mt-10 text-center text-sm/6 text-gray-500">
                 Not a member?
                 <a
                   href="#"
-                  class="font-semibold text-indigo-600 hover:text-indigo-500"
+                  className="font-semibold text-indigo-600 hover:text-indigo-500"
                 >
                   Sign Up
                 </a>

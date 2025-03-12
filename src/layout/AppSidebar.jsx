@@ -1,21 +1,51 @@
 "use client";
 import React from "react";
+import Logo from "@/assets/logo2.PNG";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useSidebar } from "../context/SidebarContext";
-import { FaHome } from "react-icons/fa"; // Importing the FaHome icon
-
+import DashboardRoundedIcon from "@mui/icons-material/DashboardRounded";
+import GroupRoundedIcon from "@mui/icons-material/GroupRounded";
+import ManageAccountsRoundedIcon from "@mui/icons-material/ManageAccountsRounded";
+import PersonAddAltRoundedIcon from "@mui/icons-material/PersonAddAltRounded";
+import StoreRoundedIcon from "@mui/icons-material/StoreRounded";
+import InventoryRoundedIcon from "@mui/icons-material/InventoryRounded";
 const navItems = [
   {
-    icon: <FaHome />,
+    icon: <DashboardRoundedIcon />,
     name: "Dashboard",
-    path: "/", // Path for the link
+    path: "/Admin/adminDashboard", // Path for the link
   },
   {
-    icon: <FaHome />,
-    name: "Dashboard",
-    path: "/", // Path for the link
+    icon: <InventoryRoundedIcon />,
+    name: "Invoice Monitor",
+    path: "/Admin/monitor", // Path for the link
+  },
+  {
+    icon: <StoreRoundedIcon />,
+    name: "Stores",
+    path: "/Admin/stores", // Path for the link
+  },
+  {
+    icon: <StoreRoundedIcon />,
+    name: "Stores",
+    path: "/Admin/stores", // Path for the link
+  },
+  {
+    icon: <PersonAddAltRoundedIcon />,
+    name: "Add Users",
+    path: "/Admin/adminDashboard/addUsers", // Path for the link
+  },
+  {
+    icon: <GroupRoundedIcon />,
+    name: "All Users",
+    path: "/Admin/adminDashboard/allUsers", // Path for the link
+  },
+  {
+    icon: <ManageAccountsRoundedIcon />,
+    name: "Admins",
+    path: "/Admin/adminDashboard/allUsers", // Path for the link
   },
 ];
 
@@ -51,26 +81,21 @@ const AppSidebar = () => {
             <>
               <Image
                 className="dark:hidden"
-                src="/images/logo/logo.svg"
+                src={Logo}
                 alt="Logo"
                 width={150}
                 height={40}
               />
               <Image
                 className="hidden dark:block"
-                src="/images/logo/logo-dark.svg"
+                src={Logo}
                 alt="Logo"
                 width={150}
                 height={40}
               />
             </>
           ) : (
-            <Image
-              src="/images/logo/logo-icon.svg"
-              alt="Logo"
-              width={32}
-              height={32}
-            />
+            <Image src={Logo} alt="logo" width={32} height={32} />
           )}
         </Link>
       </div>
@@ -96,19 +121,19 @@ const AppSidebar = () => {
                       href={nav.path}
                       className={`${
                         isActive(nav.path)
-                          ? "bg-blue-500 text-white"
+                          ? "bg-blue-500 text-white hover:bg-blue-500"
                           : "text-gray-600"
-                      } menu-item group flex items-center p-2 rounded-lg hover:bg-gray-200`}
+                      } menu-item group flex items-center p-2 rounded-lg hover:text-gray-700 hover:bg-gray-200`}
                     >
                       <span
                         className={`${
-                          isActive(nav.path) ? "text-white" : "text-gray-600"
-                        } flex items-center mr-3 text-2xl`}
+                          isActive(nav.path) ? "" : ""
+                        } flex items-center mr-3 text-xl`}
                       >
                         {nav.icon}
                       </span>
                       {(isExpanded || isHovered || isMobileOpen) && (
-                        <span>{nav.name}</span>
+                        <span className="text-sm">{nav.name}</span>
                       )}
                     </Link>
                   </li>
