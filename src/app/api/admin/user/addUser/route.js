@@ -14,6 +14,7 @@ export async function POST(req) {
       shopOwnerName,
       shopImage,
       shopContact,
+      shopAddress,
     } = await req.json();
     const shopId = uuidv4();
     const role = "User";
@@ -26,7 +27,8 @@ export async function POST(req) {
       shopOwnerName,
       shopImage,
       shopContact,
-      shopId
+      shopId,
+      shopAddress
     );
 
     const NewUser = new User({
@@ -46,6 +48,7 @@ export async function POST(req) {
       shopImage,
       shopContact,
       shopId,
+      shopAddress,
       invoices: [],
       invoiceCount: 0,
     });
@@ -54,6 +57,8 @@ export async function POST(req) {
     await NewShop.save();
     return NextResponse.json({ Success: "Shop And User Created Succesfully" });
   } catch (error) {
+    console.log(error);
+
     return NextResponse.json(
       { error: `Failed to Register ${error}` },
       { status: 500 }

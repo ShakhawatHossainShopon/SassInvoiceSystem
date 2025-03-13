@@ -20,12 +20,12 @@ const navItems = [
   {
     icon: <InventoryRoundedIcon />,
     name: "Invoice Monitor",
-    path: "/Admin/monitor", // Path for the link
+    path: "/Admin/adminDashboard/monitor", // Path for the link
   },
   {
     icon: <StoreRoundedIcon />,
     name: "Stores",
-    path: "/Admin/stores", // Path for the link
+    path: "/Admin/adminDashboard/stores", // Path for the link
   },
   {
     icon: <GroupRoundedIcon />,
@@ -35,7 +35,7 @@ const navItems = [
   {
     icon: <ManageAccountsRoundedIcon />,
     name: "Admins",
-    path: "/Admin/adminDashboard/admin", // Path for the link
+    path: "/Admin/adminDashboard/admins", // Path for the link
   },
 ];
 

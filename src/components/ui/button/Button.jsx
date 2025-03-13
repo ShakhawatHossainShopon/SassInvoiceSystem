@@ -32,7 +32,7 @@ const Button = ({
           className={twMerge(
             clsx(
               // Default button styles
-              "py-3 px-4 cursor-pointer inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none",
+              "py-2  px-4 cursor-pointer inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none",
               // Dynamically merged custom classes from the parent
               className // Merge the passed className dynamically
             )

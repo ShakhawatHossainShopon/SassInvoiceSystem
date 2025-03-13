@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { v4 as uuidv4 } from "uuid"; // Import uuid library
 
 // Define the Invoice schema
 const InvoiceSchema = new mongoose.Schema({
@@ -34,10 +35,7 @@ const InvoiceSchema = new mongoose.Schema({
 
 // Define the Admin schema with an array of invoices
 const ShopSchema = new mongoose.Schema({
-  shopId: {
-    type: String,
-    required: true,
-  },
+  shopId: { type: String, default: uuidv4 }, // UUID field for the shop
   shopContact: {
     type: Number,
     required: true,
@@ -47,6 +45,10 @@ const ShopSchema = new mongoose.Schema({
     required: true,
   },
   shopOwnerName: {
+    type: String,
+    required: true,
+  },
+  shopAddress: {
     type: String,
     required: true,
   },
