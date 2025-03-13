@@ -25,8 +25,9 @@ export async function POST(req) {
         { status: 400 }
       );
     }
+    const role = "User";
     const token = jwt.sign(
-      { userId: user._id, shopId: user.shopId, role: user.role }, // Include userId and shopId in the payload
+      { userId: user._id, shopId: user.shopId, role: role }, // Include userId and shopId in the payload
       secretKey
     );
 
