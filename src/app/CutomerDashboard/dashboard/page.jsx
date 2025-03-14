@@ -1,7 +1,7 @@
 import React from "react";
 
 const page = () => {
-  return <div>sass invoice</div>;
+  return <div>dashboard</div>;
 };
 
 export default page;
