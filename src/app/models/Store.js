@@ -59,7 +59,11 @@ const ShopSchema = new mongoose.Schema({
   invoiceCount: {
     type: Number,
   },
-  invoices: [InvoiceSchema], // Array of invoices
+  permission: {
+    type: Boolean,
+    default: true,
+  },
+  invoices: [InvoiceSchema],
 });
 
 export default mongoose.models.Shop || mongoose.model("Shop", ShopSchema);

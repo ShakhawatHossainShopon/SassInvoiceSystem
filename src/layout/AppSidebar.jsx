@@ -18,11 +18,6 @@ const navItems = [
     path: "/Admin/adminDashboard", // Path for the link
   },
   {
-    icon: <InventoryRoundedIcon />,
-    name: "Invoice Monitor",
-    path: "/Admin/adminDashboard/monitor", // Path for the link
-  },
-  {
     icon: <StoreRoundedIcon />,
     name: "Stores",
     path: "/Admin/adminDashboard/stores", // Path for the link
