@@ -7,7 +7,7 @@ import Button from "@/components/ui/button/Button";
 import LogoutIcon from "@mui/icons-material/Logout";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-const AppHeader = ({ logout }) => {
+const AppHeader = () => {
   const router = useRouter();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false); // Loading state
@@ -147,18 +147,17 @@ const AppHeader = ({ logout }) => {
           </button>
         </div>
         {error && "An Error Occurd"}
-        {logout && (
-          <Button
-            onClick={handleLogout}
-            className="hover:bg-gray-100  text-gray-800"
-            loading={loading ? true : false}
-          >
-            Logout
-            <span>
-              <LogoutIcon fontSize="small" />
-            </span>
-          </Button>
-        )}
+
+        <Button
+          onClick={handleLogout}
+          className="hover:bg-gray-100  text-gray-800"
+          loading={loading ? true : false}
+        >
+          Logout
+          <span>
+            <LogoutIcon fontSize="small" />
+          </span>
+        </Button>
       </div>
     </header>
   );
