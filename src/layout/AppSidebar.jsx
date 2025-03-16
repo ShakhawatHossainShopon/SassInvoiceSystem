@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import Logo from "@/assets/logo2.PNG";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -64,23 +63,10 @@ const AppSidebar = () => {
         <Link href="/">
           {isExpanded || isHovered || isMobileOpen ? (
             <>
-              <Image
-                className="dark:hidden"
-                src={Logo}
-                alt="Logo"
-                width={150}
-                height={40}
-              />
-              <Image
-                className="hidden dark:block"
-                src={Logo}
-                alt="Logo"
-                width={150}
-                height={40}
-              />
+              <p className="text-xl">SassInvoiceSystem</p>
             </>
           ) : (
-            <Image src={Logo} alt="logo" width={32} height={32} />
+            <p cla>SassInvoiceSystem</p>
           )}
         </Link>
       </div>
